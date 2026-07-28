@@ -66,7 +66,7 @@ const DashboardPage = () => {
               <p className="page-subtitle">Here's an overview of your SkillSphere activity.</p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <button className="btn btn-outline btn-sm" onClick={() => navigate('/edit-profile')}>
+              <button className="btn btn-outline btn-sm" onClick={() => navigate('/settings')}>
                 <User size={14} /> Edit Profile
               </button>
               <button className="btn btn-primary btn-sm" onClick={() => navigate('/explore')}>
@@ -126,7 +126,7 @@ const DashboardPage = () => {
                     <button
                       className="btn btn-sm"
                       style={{ marginTop: '0.875rem', background: 'white', color: 'var(--color-primary)', fontSize: '0.8125rem' }}
-                      onClick={() => navigate('/edit-profile')}
+                      onClick={() => navigate('/settings')}
                     >
                       Complete Profile <ChevronRight size={14} />
                     </button>
@@ -218,7 +218,7 @@ const DashboardPage = () => {
                     { label: 'My Requests', icon: Send, to: '/requests', variant: 'outline' },
                     { label: 'My Sessions', icon: Calendar, to: '/sessions', variant: 'outline' },
                     { label: 'My Reviews', icon: Star, to: '/reviews', variant: 'outline' },
-                    { label: 'Edit Profile', icon: User, to: '/edit-profile', variant: 'ghost' },
+                    { label: 'Edit Profile', icon: User, to: '/settings', variant: 'ghost' },
                   ].map((action) => (
                     <button
                       key={action.label}

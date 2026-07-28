@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
-  BookOpen, Bell, ChevronDown, User, LogOut, Settings, LayoutDashboard, Compass,
+  BookOpen, Bell, ChevronDown, User, LogOut, Settings, LayoutDashboard, Compass, Inbox, Calendar, Star, Shield,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Avatar from '../ui/Avatar';
@@ -112,6 +112,37 @@ const Navbar = () => {
                     >
                       <Compass size={15} /> Explore
                     </Link>
+                    <Link
+                      to="/requests"
+                      className="dropdown-item"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <Inbox size={15} /> Requests
+                    </Link>
+                    <Link
+                      to="/sessions"
+                      className="dropdown-item"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <Calendar size={15} /> Sessions
+                    </Link>
+                    <Link
+                      to="/reviews"
+                      className="dropdown-item"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <Star size={15} /> Reviews
+                    </Link>
+                    {user?.role === 'admin' && (
+                      <Link
+                        to="/admin"
+                        className="dropdown-item"
+                        style={{ color: 'var(--color-error)' }}
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        <Shield size={15} /> Admin Panel
+                      </Link>
+                    )}
                     <div className="dropdown-divider" />
                     <Link
                       to="/settings"

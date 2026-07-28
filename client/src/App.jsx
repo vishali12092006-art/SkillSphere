@@ -9,6 +9,10 @@ import DashboardPage from './pages/DashboardPage';
 import ExplorePage from './pages/ExplorePage';
 import UserProfilePage from './pages/UserProfilePage';
 import SettingsPage from './pages/SettingsPage';
+import RequestsPage from './pages/RequestsPage';
+import SessionsPage from './pages/SessionsPage';
+import ReviewsPage from './pages/ReviewsPage';
+import AdminPage from './pages/AdminPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -44,6 +48,47 @@ function App() {
             element={
               <ProtectedRoute>
                 <SettingsPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* /edit-profile redirects to /settings for backward compatibility */}
+          <Route
+            path="/edit-profile"
+            element={
+              <ProtectedRoute>
+                <Navigate to="/settings" replace />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/requests"
+            element={
+              <ProtectedRoute>
+                <RequestsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/sessions"
+            element={
+              <ProtectedRoute>
+                <SessionsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reviews"
+            element={
+              <ProtectedRoute>
+                <ReviewsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute adminOnly>
+                <AdminPage />
               </ProtectedRoute>
             }
           />

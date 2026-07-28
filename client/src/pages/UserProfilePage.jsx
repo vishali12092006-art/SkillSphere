@@ -110,7 +110,7 @@ const UserProfilePage = () => {
                   </div>
 
                   {isOwnProfile ? (
-                    <Button variant="outline" onClick={() => navigate('/edit-profile')} size="sm">
+                    <Button variant="outline" onClick={() => navigate('/settings')} size="sm">
                       Edit Profile
                     </Button>
                   ) : (

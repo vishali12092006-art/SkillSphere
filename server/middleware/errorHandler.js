@@ -34,6 +34,12 @@ const errorHandler = (err, req, res, next) => {
     message = 'Token expired';
   }
 
+  // Mongoose connection failure
+  if (err.name === 'MongooseServerSelectionError' || err.name === 'MongooseError' && err.message.includes('buffering timed out')) {
+    statusCode = 503;
+    message = 'Database connection error. Please make sure MongoDB is running or check MONGO_URI in server/.env.';
+  }
+
   res.status(statusCode).json({
     message,
     stack: process.env.NODE_ENV === 'production' ? undefined : err.stack,

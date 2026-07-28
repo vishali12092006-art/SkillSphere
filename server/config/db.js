@@ -1,14 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const connectDB = async () => {
+  const mongoUri = process.env.MONGO_URI;
+
+  console.log("MONGO_URI =", mongoUri);
+
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    const conn = await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
     });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+
+    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(`MongoDB connection error: ${error.message}`);
+    console.error("❌ REAL MONGODB ERROR:");
+    console.error(error);
     process.exit(1);
   }
 };
