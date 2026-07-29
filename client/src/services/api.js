@@ -29,11 +29,10 @@ api.interceptors.response.use(
 
 // --- Auth ---
 export const authService = {
-  register: (data) => api.post('/auth/register', data),
-  login: (data) => api.post('/auth/login', data),
-  getMe: () => api.get('/auth/me'),
+  register: (data) => api.post('/api/auth/register', data),
+  login: (data) => api.post('/api/auth/login', data),
+  getMe: () => api.get('/api/auth/me'),
 };
-
 // --- Users ---
 export const userService = {
   getProfile: (id) => api.get(`/users/${id}`),
