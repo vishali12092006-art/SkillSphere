@@ -73,7 +73,7 @@ export const statusConfig = {
 export const getAvatarUrl = (avatar) => {
   if (!avatar) return null;
   if (avatar.startsWith('http')) return avatar;
-  return `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}/${avatar}`;
+  return `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://skillsphere-cuyg.onrender.com'}/${avatar}`;
 };
 
 // Categories list
