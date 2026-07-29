@@ -7,7 +7,7 @@ const Review = require('./models/Review');
 
 const seedData = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/skillsphere');
+    await mongoose.connect(process.env.MONGO_URI || 'skill-sphere-f0jopz8v2-vishali12092006-6886s-projects.vercel.app');
     console.log('Connected to MongoDB for seeding...');
 
     // Clear existing collections
