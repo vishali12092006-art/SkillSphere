@@ -82,5 +82,3 @@ export const adminService = {
   getUsers: (params) => api.get('/api/admin/users', { params }),
   deleteUser: (id) => api.delete(`/api/admin/users/${id}`),
 };
-
-export default api;
