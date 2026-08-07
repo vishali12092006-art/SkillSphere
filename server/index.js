@@ -20,8 +20,33 @@ connectDB();
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+];
+
+if (process.env.CLIENT_URL) {
+  const clientUrl = process.env.CLIENT_URL.startsWith('http')
+    ? process.env.CLIENT_URL
+    : `https://${process.env.CLIENT_URL}`;
+  allowedOrigins.push(clientUrl);
+  allowedOrigins.push(process.env.CLIENT_URL);
+}
+
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_URL || true, credentials: true }));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production' || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

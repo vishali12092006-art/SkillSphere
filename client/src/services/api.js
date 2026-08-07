@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://skillsphere-cuyg.onrender.com';
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV ? 'http://localhost:5000' : 'https://skillsphere-cuyg.onrender.com');
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -18,10 +20,16 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (error) => {
-    if (error.response?.status === 401) {
+    const isAuthRoute =
+      error.config?.url?.includes('/api/auth/login') ||
+      error.config?.url?.includes('/api/auth/register');
+
+    if (error.response?.status === 401 && !isAuthRoute) {
       localStorage.removeItem('skillsphere_token');
       localStorage.removeItem('skillsphere_user');
-      window.location.href = '/login';
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }

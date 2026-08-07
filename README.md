@@ -164,7 +164,6 @@ http://localhost:5000
 # 🎯 Future Enhancements
 
 - Real-time chat
-- Email verification
 - Forgot password
 - Notifications
 - AI-based skill recommendations

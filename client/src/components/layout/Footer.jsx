@@ -29,20 +29,20 @@ const Footer = () => (
         <div>
           <div className="footer-heading">Learn</div>
           <div className="footer-links">
-            <span className="footer-link">Technology</span>
-            <span className="footer-link">Design</span>
-            <span className="footer-link">Business</span>
-            <span className="footer-link">Languages</span>
+            <Link to="/explore?category=Technology" className="footer-link">Technology</Link>
+            <Link to="/explore?category=Design" className="footer-link">Design</Link>
+            <Link to="/explore?category=Business" className="footer-link">Business</Link>
+            <Link to="/explore?category=Language" className="footer-link">Languages</Link>
           </div>
         </div>
 
         <div>
           <div className="footer-heading">Company</div>
           <div className="footer-links">
-            <span className="footer-link">About</span>
-            <span className="footer-link">Privacy Policy</span>
-            <span className="footer-link">Terms of Service</span>
-            <span className="footer-link">Contact</span>
+            <Link to="/" className="footer-link">About</Link>
+            <Link to="/" className="footer-link">Privacy Policy</Link>
+            <Link to="/" className="footer-link">Terms of Service</Link>
+            <Link to="/" className="footer-link">Contact</Link>
           </div>
         </div>
       </div>

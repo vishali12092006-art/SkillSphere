@@ -93,11 +93,13 @@ export const AVAILABILITY_OPTIONS = ['Weekdays', 'Weekends', 'Evenings', 'Flexib
 
 // Error message extractor
 export const getErrorMessage = (error) => {
-  if (error?.code === 'ERR_NETWORK' || error?.message === 'Network Error') {
+  if (error?.response?.data?.message) {
+    return error.response.data.message;
+  }
+  if (!error?.response && (error?.code === 'ERR_NETWORK' || error?.code === 'ECONNREFUSED' || error?.message === 'Network Error')) {
     return 'Cannot connect to server. Please make sure the backend server (port 5000) and MongoDB are running.';
   }
   return (
-    error?.response?.data?.message ||
     error?.message ||
     'Something went wrong. Please try again.'
   );

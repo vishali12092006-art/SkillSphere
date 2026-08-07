@@ -41,10 +41,17 @@ const LoginPage = () => {
 
     setLoading(true);
     try {
+      console.log("LOGIN API REQUEST SUBMITTED");
       const res = await authService.login(form);
+      console.log("LOGIN RESPONSE STATUS:", res.status);
       login(res.data.user, res.data.token);
       navigate(from, { replace: true });
     } catch (err) {
+      console.log("LOGIN ERROR:", err);
+      console.log("LOGIN ERROR CODE:", err?.code);
+      console.log("LOGIN ERROR MESSAGE:", err?.message);
+      console.log("LOGIN RESPONSE:", err?.response?.data);
+      console.log("LOGIN STATUS:", err?.response?.status);
       setServerError(getErrorMessage(err));
     } finally {
       setLoading(false);

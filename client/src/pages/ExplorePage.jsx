@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Search, Filter, MapPin, Star, BookOpen, Lightbulb, X } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import Avatar from '../components/ui/Avatar';
@@ -11,13 +11,21 @@ import { userService } from '../services/api';
 import { SKILL_CATEGORIES } from '../utils/helpers';
 
 const ExplorePage = () => {
+  const [searchParams] = useSearchParams();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(searchParams.get('category') || '');
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({});
   const [debounced, setDebounced] = useState('');
+
+  useEffect(() => {
+    const paramCat = searchParams.get('category');
+    if (paramCat !== null && paramCat !== category) {
+      setCategory(paramCat);
+    }
+  }, [searchParams, category]);
 
   // Debounce search
   useEffect(() => {
